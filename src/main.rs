@@ -1,6 +1,6 @@
 use std::io::{stdout, Write};
 
-const FIZZBUZZ_LEN: u8 = 200;
+const FIZZBUZZ_LEN: u8 = 100;
 
 const FIZZBUZZ_ARR_LEN: usize = fizzbuzz_const_len();
 
