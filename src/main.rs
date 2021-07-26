@@ -54,7 +54,7 @@ const fn fizzbuzz_const() -> [u8; FIZZBUZZ_ARR_LEN] {
     // I use this variable to keep track of where on the array I need to write to next.
     let mut writehead = 0;
 
-    // the equivalent of "for iternum in 1..=FIZZBUZZ_LEN {"
+    // the equivalent of "for iternum in 1..FIZZBUZZ_LEN {"
     while iternum != FIZZBUZZ_LEN {
         // If the number we're processing is divisable by 15 (3 & 5)
         if iternum % 15 == 0 {
