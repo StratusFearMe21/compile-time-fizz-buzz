@@ -12,7 +12,7 @@ const fn fizzbuzz_const() -> [u8; FIZZBUZZ_ARR_LEN] {
     let mut result: [u8; FIZZBUZZ_ARR_LEN] = [10; FIZZBUZZ_ARR_LEN];
     let mut iternum: u8 = 1;
     let mut writehead = 0;
-    loop {
+    while iternum != FIZZBUZZ_LEN {
         if iternum % 15 == 0 {
             result[writehead] = 70;
             result[writehead + 1] = 105;
@@ -48,18 +48,15 @@ const fn fizzbuzz_const() -> [u8; FIZZBUZZ_ARR_LEN] {
             result[writehead + 2] = (iternum % 10) + 48;
             writehead += 4;
         }
-        if iternum == FIZZBUZZ_LEN {
-            return result;
-        } else {
-            iternum += 1;
-        }
+        iternum += 1;
     }
+    result
 }
 
 const fn fizzbuzz_const_len() -> usize {
     let mut result: usize = 0;
     let mut iternum: u8 = 1;
-    loop {
+    while iternum != FIZZBUZZ_LEN {
         if iternum % 15 == 0 {
             result += 9;
         } else if iternum % 5 == 0 || iternum % 3 == 0 {
@@ -71,10 +68,7 @@ const fn fizzbuzz_const_len() -> usize {
         } else {
             result += 4;
         }
-        if iternum == FIZZBUZZ_LEN {
-            return result;
-        } else {
-            iternum += 1;
-        }
+        iternum += 1;
     }
+    result
 }
