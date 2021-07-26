@@ -1,10 +1,10 @@
 /*
     I've written a lot of comments in this code base because it was made for educational purposes
     I am NOT an "over commenter"
-    
+
     If you are looking to hire me because I write such perfect, perstine, and performant code
     you can contact me in 2 ways
-    
+
     Matrix: @stratusfearme21:matrix.palomagit.ml
     Discord: CaptainCankle31#6175
 */
@@ -18,42 +18,42 @@ const FIZZBUZZ_ARR_LEN: usize = fizzbuzz_const_len();
 // The actual calculated Fizz Buzz string, expressed as an array of a bit integers.
 const FIZZBUZZ: [u8; FIZZBUZZ_ARR_LEN] = fizzbuzz_const();
 
-fn main() {
+fn main() -> Result<(), std::io::Error> {
     /*
         Because our array the we calculated was encoded in UTF-8 to begin with, we can send it directly to stdout without any conversions needed.
-        
+
         This was faster than using stdout().write_all(&FIZZBUZZ).unwrap().
         However, writing to stdout without a lock is technically unsafe
         but considering that we are only using 1 thread and this is the only line in the main function
         I'm fairly sure nothing will go wrong
     */
-    std::fs::write("/dev/stdout", FIZZBUZZ).unwrap();
+    std::fs::write("/dev/stdout", FIZZBUZZ)
 }
 
 // const fns are capable of being calculated at compile time
 const fn fizzbuzz_const() -> [u8; FIZZBUZZ_ARR_LEN] {
-    /* 
+    /*
         The result is a [u8] instead of a &str because you cannot mutate a &str
         and you can't use the String type either because it uses the heap
-        
+
         Hence why I'm using a [u8] containing UTF-8 charecters
         This is a good format not only because I don't really have any other choice
         but also because I can write this directly to stdout without having to do a conversion of any kind.
-        
+
         In order to initialize this variable we allocate it with UTF-8 newlines.
         10 = \n
     */
     let mut result: [u8; FIZZBUZZ_ARR_LEN] = [10; FIZZBUZZ_ARR_LEN];
-    
+
     /*
         Because of the limitation that I can't use for loops in a const fn
         I'm instead using a mutable variable that is incremented on every iteration of the while loop below.
     */
     let mut iternum: u8 = 1;
-    
+
     // I use this variable to keep track of where on the array I need to write to next.
     let mut writehead = 0;
-    
+
     // the equivalent of "for iternum in 1..=FIZZBUZZ_LEN {"
     while iternum != FIZZBUZZ_LEN {
         // If the number we're processing is divisable by 15 (3 & 5)
